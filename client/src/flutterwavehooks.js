@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function FlutterwaveHook(prop) {
   const config = {
-    public_key: 'FLWPUBK-b73d166127557d9fc24d219eb9ac96e2-X',
+    public_key: 'FLWPUBK-d28aff6708c024c24b0cd247f586f4ff-X',
     tx_ref: prop.email + Date.now(),
     amount: prop.amount,
     currency: 'NGN',
@@ -18,7 +18,7 @@ export default function FlutterwaveHook(prop) {
     },
     customizations: {
       title: 'Pay For '+ prop.product,
-      description: 'Payment For PES Tournament',
+      description: 'Payment For '+ prop.product,
       logo: 'https://www.uniconne.com/uploads/pes.jpg',
     },
   };
