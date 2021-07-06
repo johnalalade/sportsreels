@@ -92,7 +92,7 @@ export default class Post extends Component {
                   <h6>Description:</h6>
                   <textarea placeholder="Enter Prouct Description" className="form-control" onChange={this.description}></textarea>
                   <br/>
-                  <h6>Price:</h6>
+                  <h6>Price (&#8358;):</h6>
                   <input type="number" placeholder="Enter Price" className="form-control" onChange={this.price}/>
 
                   {this.state.loaded != 0 &&

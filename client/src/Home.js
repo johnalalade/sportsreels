@@ -52,7 +52,7 @@ function Structure(prop) {
         <div className="card-body">
 
           <h5 className="card-title">{prop.product}</h5>
-          <p className="card-text">Price: {prop.price}</p>
+          <p className="card-text">Price: &#8358; {prop.price}</p>
           <p className="card-text"> Description: {prop.description}</p>
           <div style={{ display: "flex", justifyContent: "space-evenly" }}>
             <a className="enq btn btn-success" target="_blank" href={`https://wa.me/+2348069965604`} ><FontAwesomeIcon icon={faWhatsapp} size="lg" ></FontAwesomeIcon> Whatsapp</a>
