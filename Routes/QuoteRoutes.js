@@ -8,6 +8,7 @@ route.post('/products', QuoteController.indexQuote)
 route.post('/products/add',upload, QuoteController.storeQuote)
 route.post('/products/delete', QuoteController.deleteQuote)
 route.post('/products/mail', QuoteController.mail)
+route.post('/products/comment', QuoteController.comment)
 
 
 module.exports = route;

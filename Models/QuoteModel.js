@@ -13,7 +13,8 @@ const userProfileSchema = new Schema({
     },
     img:{
         type: String,
-    }
+    },
+    comments: []
 }, {timestamps: true});
 
 const Product = mongoose.model('Product', userProfileSchema)

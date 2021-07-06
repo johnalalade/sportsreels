@@ -20,8 +20,8 @@ import {
   Progress
 } from 'reactstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faOpencart, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import {faPaperPlane, faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import FlutterwaveHook from './flutterwavehooks';
 
@@ -30,6 +30,9 @@ function Structure(prop) {
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [name, setName] = useState("")
+  const [uname, setUname] = useState("")
+  const [comment, setComment] = useState("")
+  const [visibility, setVisibility] = useState("collaps")
 
   const toggle = () => {
     setModal(!modal)
@@ -44,6 +47,20 @@ function Structure(prop) {
     setName(ev.target.value)
   }
 
+  const commenter = () => {
+    if (comment.trim() === "") {
+      return;
+    } else {
+      prop.comm(comment,uname, prop.id);
+      prop.comments.unshift({
+        comment: comment,
+        username: uname,
+      });
+      setComment("");
+      setUname("");
+    }
+  };
+
   return (
     <div>
       <div className="card">
@@ -57,9 +74,55 @@ function Structure(prop) {
           <div style={{ display: "flex", justifyContent: "space-evenly" }}>
             <a className="enq btn btn-success" target="_blank" href={`https://wa.me/+2348069965604`} ><FontAwesomeIcon icon={faWhatsapp} size="lg" ></FontAwesomeIcon> Whatsapp</a>
 
-            <span className="enq btn btn-primary" onClick={toggle} ><FontAwesomeIcon icon={faOpencart} size="lg" ></FontAwesomeIcon> Oder</span>
+            <span className="enq btn btn-primary" onClick={toggle} ><FontAwesomeIcon icon={faShoppingCart} size="lg" ></FontAwesomeIcon> Order</span>
           </div>
+          <br/>
+          <div style={{display: "flex"}}>
+          <input
+              type="name"
+              name="comment"
+              placeholder="Name..."
+              onChange={(ev) => {
+                let comment = ev.target.value;
+                setUname(comment);
+              }}
+              value={uname}
+              className="form-control"
+            />
+          <input
+              type="text"
+              name="comment"
+              placeholder="Comment..."
+              onChange={(ev) => {
+                let comment = ev.target.value;
+                setComment(comment);
+              }}
+              value={comment}
+              className="form-control"
+            />
+            <button className="btn btn-primary" onClick={commenter}>
+              <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
+            </button>
+            </div>
+            {(prop.comments[0] && (
+                  <div>
+
+                    <div className="comments">
+                    {prop.comments.length > 0 && <p className="comment-posters-handle" style={(localStorage.getItem("mode") === "light") ? {color: "black" } : null}>{`${prop.comments.length} comments`}</p>}
+
+                    </div>
+                  </div>
+                ))}
         </div>
+        
+        <p className="comment-posters-handle" style={(localStorage.getItem("mode") === "light") ? {color: "black", marginRight: "4px" } : {marginRight: "4px"}}>@{prop.comments[0].username}: {prop.comments[0].comment}</p>
+        {prop.comments.length > 1 && visibility !== "visible" && <p style={{color: "blue", textDecoration: "underline"}} onClick={() => setVisibility("visible")}>Read more</p>}
+        {visibility === "visible" &&
+        <div>
+            {prop.comments.map((com) => <p>@{com.username}: {com.comment}</p>)}
+            <p style={{color: "blue", textDecoration: "underline"}} onClick={() => setVisibility("none")}>Show less</p>
+        </div>
+        }
       </div>
       <br />
 
@@ -226,11 +289,26 @@ class Home extends Component {
     })
   }
   render() {
+
+    const comm = (comment, uname, id) => {
+      let comm = {
+        postID: id,
+        comment: { username: uname, comment },
+      };
+      if (this.state.src !== "undefined") {
+        comm.comment.src = this.state.src;
+      }
+      axios
+        .post("/products/comment", comm)
+        .then(() => toast.success("Comment added"))
+        .catch((err) => toast.error("Couldn't add comment to post."));
+    };
+
     return ( 
       <div>
         <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
-            <NavbarBrand href="/">Vincent Luxury &copy; 2021 </NavbarBrand>
+            <NavbarBrand href="/"><b>Vincent Luxury</b></NavbarBrand>
             <NavbarToggler onClick={this.toggler} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto' navbar>
@@ -251,7 +329,7 @@ class Home extends Component {
               <br />
               {
                 this.state.products && this.state.products.map((product) =>
-                  <Structure img={product.img} description={product.description} product={product.product} price={product.price} />
+                  <Structure img={product.img} description={product.description} product={product.product} price={product.price} comm={comm} id={product._id} comments={product.comments}/>
                 )
               }
             </div>}

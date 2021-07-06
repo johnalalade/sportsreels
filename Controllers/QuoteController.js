@@ -83,6 +83,74 @@ const storeQuote = (req, res, next) => {
     })
 }
 
+const comment = (req, res, next) => {
+    let postID = req.body.postID
+    let comment = req.body.comment
+    comment.id = uuidv4()
+    let comments
+    Product.findById(postID)
+        .then((data) => {
+            let comm = data.comments
+            if (comm) {
+                comments = [comment, ...comm]
+            }
+            else {
+                comments = [comment]
+            }
+
+            let updatedPost = {
+                comments: comments
+            }
+            console.log(updatedPost.comments)
+            Product.findByIdAndUpdate(postID, { $set: updatedPost })
+                .then((pos) => {
+                    if (pos.ass) {
+                        var transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            auth: {
+                                user: 'johnalalade6@gmail.com',
+                                pass: 'JOHNNYBOTB'
+                            }
+                        });
+
+                        var mailOptions = {
+                            from: 'johnalalade6@gmail.com',
+                            to: pos.email,
+                            subject: 'Comment Notification',
+                            html: `<p>Hello Mr. Victor,</p> <p>Someone sent a comment to a product on your site you posted earlier</p> 
+                            <br /> <a href="https://www.vincentluxurydryfish.com/">Check it out</a> <p>Kind regards..</p> <quote>~John Alalade</quote>`
+                        };
+
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log("Emailimg error: " + error);
+                            } else {
+                                console.log('Email sent: ' + info.response);
+                            }
+                        });
+                    }
+                    console.log({
+                        message: "Comment Add Successfully"
+                    })
+                    res.json({
+                        message: "Comment Add Successfully"
+                    })
+                })
+                .catch(error => {
+                    res.json({
+                        message: "An Error Occured" + error
+                    })
+                })
+
+        })
+        .then(() => {
+            res.json({
+                message: "Comment Add Successfully"
+            })
+        })
+        .catch(err => console.error("Error Ooo! " + err))
+}
+
 // Mail
 const mail = (req, res, next) => {
 
@@ -90,7 +158,7 @@ const mail = (req, res, next) => {
         service: 'gmail',
         auth: {
             user: 'uniconneteam@gmail.com',
-            pass: 'JohnAlalade@4444'
+            pass: 'youngestboy144'
         }
     });
 
@@ -143,5 +211,5 @@ const deleteQuote = (req, res, next) => {
 
 
 module.exports = {
-    deleteQuote, storeQuote, indexQuote, mail
+    deleteQuote, storeQuote, indexQuote, mail, comment
 }
