@@ -104,7 +104,7 @@ function Structure(prop) {
               <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
             </button>
             </div>
-            {(prop.comments[0] && (
+            {(prop.comments && prop.comments[0] && (
                   <div>
 
                     <div className="comments">
@@ -115,13 +115,15 @@ function Structure(prop) {
                 ))}
         </div>
         
-        <p className="comment-posters-handle" style={(localStorage.getItem("mode") === "light") ? {color: "black", marginRight: "4px" } : {marginRight: "4px"}}>@{prop.comments[0].username}: {prop.comments[0].comment}</p>
+        {prop.comments && prop.comments[0] && <div>
+          <p className="comment-posters-handle" style={(localStorage.getItem("mode") === "light") ? {color: "black", marginRight: "4px" } : {marginRight: "4px"}}>@{prop.comments[0].username}: {prop.comments[0].comment}</p>
         {prop.comments.length > 1 && visibility !== "visible" && <p style={{color: "blue", textDecoration: "underline"}} onClick={() => setVisibility("visible")}>Read more</p>}
         {visibility === "visible" &&
         <div>
             {prop.comments.map((com) => <p>@{com.username}: {com.comment}</p>)}
             <p style={{color: "blue", textDecoration: "underline"}} onClick={() => setVisibility("none")}>Show less</p>
         </div>
+        } </div>
         }
       </div>
       <br />

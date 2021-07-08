@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
           <Switch>
             <Route exact path='/' component={Home}/>
-            <Route path='/post/v124' component={Post}/>
-            <Route path='/delete/v124' component={Delete}/>
+            <Route path='/post/v144' component={Post}/>
+            <Route path='/delete/v144' component={Delete}/>
 
           </Switch>
         </BrowserRouter>
