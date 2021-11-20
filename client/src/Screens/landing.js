@@ -253,7 +253,7 @@ profile of each player‘s unique resume, including their action videos ,, histo
           </div>
         </div>
         </div>
-            <br/>
+            
         <div className="col-md-4 a-c">
           <div class="card">
             
@@ -269,7 +269,7 @@ profile of each player‘s unique resume, including their action videos ,, histo
           </div>
         </div>
         </div>
-            <br/>
+            
         <div className="col-md-4 a-c">
           <div class="card">
             
