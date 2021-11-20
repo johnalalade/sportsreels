@@ -120,7 +120,7 @@ function Landing() {
     <div className="container">
       <br/>
       <div className="pop-div">
-        <h3 className="display-1 pop">Popular Sports</h3>
+        <h3 className="display-5 pop">Popular Sports</h3>
         <span className="pop-span"></span>
       </div>
       <br/>
@@ -299,7 +299,7 @@ profile of each player‘s unique resume, including their action videos ,, histo
 
           <div className="col-md-6 d-none d-md-block"></div>
           <div className="col-md-6 w-h-div">
-            <h2 className="display-4 w-h-h">What are you waiting for?</h2>
+            <h2 className="display-5 w-h-h">What are you waiting for?</h2>
             <p className="w-h-p">If you are talented in sport and you’re sure of your skills, you can apply by clicking the link below.</p>
           </div>
 

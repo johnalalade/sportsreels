@@ -48,5 +48,5 @@ const loginSchema = new Schema({
 //     }
 // })
 
-const Login = mongoose.model('Login', loginSchema);
+const Login = mongoose.model('Users', loginSchema);
 module.exports = Login
