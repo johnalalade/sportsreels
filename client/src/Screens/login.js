@@ -16,7 +16,7 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    width: "60%",
+    // width: "60%",
     minHeight: "1000vh",
     // display: "flex",
     // height: "80vh",

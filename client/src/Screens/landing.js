@@ -15,7 +15,7 @@ import './landing.css'
 
 function Landing() {
   return (
-      <div>
+      <div className="bod">
         {/* <!-- navbar --> */}
   <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-xxl">
@@ -63,7 +63,7 @@ function Landing() {
       <div class="row g-4 justify-content-center align-items-center">
         <div class="col-md-5 text-center text-md-start">
           <h1>
-            <div class="display-2">Discover Top Talents</div>
+            <div class="display-4">Discover Top Talents</div>
             {/* <div class="display-5 text-muted">Your Coding Skills</div> */}
           </h1>
           <p class="lead my-4 text-muted">Through our growing networks of talented young people</p>
@@ -383,10 +383,14 @@ profile of each player‘s unique resume, including their action videos ,, histo
 
     </div>
   </section>
+  <br/>
+  <br/>
+  <br/>
 
   {/* <!-- contact form -->
   <!-- form-control, form-label, form-select, input-group, input-group-text --> */}
   <section id="contact">
+    <br/>
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-6 cc">
