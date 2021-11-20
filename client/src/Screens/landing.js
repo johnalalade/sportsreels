@@ -134,7 +134,7 @@ function Landing() {
          </div>
         </div>
         </div>
-          <br/>
+          
         <div className="col-md-3">
           <div class="card">
             <img class="card-img-top" src={bball} alt="Card image cap" />
@@ -154,7 +154,7 @@ function Landing() {
          </div>
         </div>
         </div>
-            <br/>
+           
         <div className="col-md-3">
           <div class="card">
             <img class="card-img-top" src={ttenis} alt="Card image cap" />
@@ -190,7 +190,7 @@ profile of each player‘s unique resume, including their action videos ,, histo
          </div>
         </div>
         </div>
-            <br/>
+            
         <div className="col-md-4">
           <div class="card">
             <img class="card-img-top why-img" src={chat} alt="Card image cap" />
@@ -201,7 +201,7 @@ profile of each player‘s unique resume, including their action videos ,, histo
          </div>
         </div>
         </div>
-            <br/>
+            
         <div className="col-md-4">
           <div class="card">
             <img class="card-img-top why-img" src={statistics} alt="Card image cap" />
