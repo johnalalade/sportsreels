@@ -55,7 +55,7 @@ const register = (req, res, next) => {
                 res.json({
                     message: "Login Successful",
                     id: user._id,
-                    username: user.username,
+                    firstname: user.firstname,
                      src: user.src,
                      phone: user.phone,
                      email: user.email,

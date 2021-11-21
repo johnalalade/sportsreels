@@ -565,7 +565,7 @@ class Logins extends Component {
               window.location = `/${localStorage.getItem('redirect')}?oau=true`
             }
             else {
-              window.location = `/`
+              window.location = `/welcome`
             }
           } else {
             toast.error(
@@ -606,7 +606,7 @@ class Logins extends Component {
                 ></span>
               </div>
               <h2  className="type-writer" style={(localStorage.getItem("mode") === "light") ? { color: "white" } : null}>
-               <h4>Welcome To Sportreels</h4>
+               <h4>Welcome To Sports Reels</h4>
               </h2>
               <p style={(localStorage.getItem("mode") === "light") ? { color: "white" } : null}>
                 {" "}
@@ -698,7 +698,7 @@ class Logins extends Component {
                 </a>
               </div>
               <p>
-                <b style={(localStorage.getItem("mode") === "light") ? { color: "#0f1429" } : null} >Uniconne Team &#169; {year.slice(10, 15)}</b>
+                <b style={(localStorage.getItem("mode") === "light") ? { color: "#0f1429" } : null} >Sport Reels &#169; {year.slice(10, 15)}</b>
               </p>
             </div>
           </div>
