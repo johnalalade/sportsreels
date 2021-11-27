@@ -6,22 +6,13 @@ const loginSchema = new Schema({
     avatar: {
         type: String
     },
-    firstname:{
+    fullname:{
         type: String,
         required: true
-    },
-    lastname: {
-        type: String
     },
     email: {
         type: String,
         required: true
-    },
-    phone: {
-        type: String
-    },
-    dob: {
-        type: Date
     },
     country: {
         type: String
@@ -31,13 +22,19 @@ const loginSchema = new Schema({
         required: true
     },
     sport: {
-        type: String
+        type: Array
     },
     signed: {
         type: Boolean
     },
-    searching: {
+    scouting: {
         type: Boolean
+    },
+    role: {
+        type: String
+    },
+    about: {
+        type: String
     }
 
 }, {timestamps: true})

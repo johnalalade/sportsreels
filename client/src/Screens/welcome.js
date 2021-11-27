@@ -411,7 +411,7 @@ class Welcome extends Component {
                 ></span>
               </div>
               <h2  className="type-writer" style={(localStorage.getItem("mode") === "light") ? { color: "white" } : null}>
-                  <h3>Hello {localStorage.getItem("firstname")}</h3>
+                  <h3>Hello {localStorage.getItem("fullname")}</h3>
                <h4>Welcome To Sports Reels</h4>
               </h2>
               <p style={(localStorage.getItem("mode") === "light") ? { color: "white" } : null}>

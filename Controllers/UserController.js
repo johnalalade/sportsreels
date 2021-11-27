@@ -38,29 +38,25 @@ const register = (req, res, next) => {
         }
 
         let login = new Login({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
+            fullname: req.body.fullname,
             email: req.body.email,
-            phone: req.body.phone,
-            dob: req.body.dob,
             country: req.body.country,
             sport: req.body.sport,
             signed: req.body.signed,
-            searching: req.body.searching,
+            scouting: req.body.scout,
+            role: req.body.role,
             password: hashedPass
         })
         login.save()
             .then(user => {
-
+                let token = jwt.sign({ name: user.name }, "Iyaaduke+5")
                 res.json({
                     message: "Login Successful",
                     id: user._id,
-                    firstname: user.firstname,
+                    token,
+                    fullname: user.fullname,
                      src: user.src,
-                     phone: user.phone,
                      email: user.email,
-                     department: user.department,
-                     level: user.level,
                      isVerified: true
                 })
                 //email
@@ -158,16 +154,13 @@ const updateProfile = (req, res, next) => {
     let userID = req.body.userID
 
     let updatedProfile = {
-        bookmarks: [],
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
+        fullname: req.body.fullname,
         email: req.body.email,
-        phone: req.body.phone,
-        dob: req.body.dob,
-        sport: req.body.sport,
         country: req.body.country,
-        searching: req.body.searching,
-        signed: req.body.signed
+        about: req.body.about,
+        signed: req.body.signed,
+        scouting: req.body.scout,
+        role: req.body.role
     }
     if (req.file) {
         updatedProfile.avatar = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
@@ -223,9 +216,10 @@ const updateProfile = (req, res, next) => {
         })
         .then(() => {
             Login.findByIdAndUpdate(userID, { $set: updatedProfile })
-                .then(() => {
+                .then((response) => {
                     res.json({
-                        message: "Profile Updated Successfully"
+                        message: "Profile Updated Successfully",
+                        response
                     })
                 })
                 .catch(error => {

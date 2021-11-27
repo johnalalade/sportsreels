@@ -10,13 +10,14 @@ const aws = require('aws-sdk');
 const { v4: uuidv4 } = require('uuid');
 
 const userRoute = require('./Routes/UserRoutes');
+const postRoute = require('./Routes/PostRoutes');
 
 const port = process.env.PORT || 5000
 
 
 // const router = require('./router');
 const uri = process.env.ATLAS_URI
-mongoose.connect('mongodb+srv://Exploits:Exploits4444@cluster0.vtnwl.gcp.mongodb.net/Exploits?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
+mongoose.connect('mongodb+srv://John:John4444@cluster0.9bf4e.mongodb.net/Sportsreels?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
 const db = mongoose.connection
 
 db.on('error', (err) => {
@@ -55,6 +56,7 @@ server.listen(port, () => console.log(`Server has started.on port ${port}$`));
 
 // app.use('/', profileRoute)
 app.use('/', userRoute)
+app.use('/', postRoute)
 
 
 

@@ -107,7 +107,7 @@ a {
   padding-bottom: 20px;
 }
 .logo img {
-  width: 200px;
+  width: 40px;
 }
 .slides-content h2 {
   font-size: 2.5rem;
@@ -139,9 +139,6 @@ a {
 .slides-content span a {
   color: #ffffff;
   align-items: center;
-}
-.slide:nth-child(1){
-  background-image: url('../Images/soccer.png');
 }
 .slides-content span {
   font-family: "Redressed", cursive;
@@ -269,13 +266,8 @@ a {
   background-color: #005ca3;
 }
 
-.out{
-  position: relative;
-  width: 100vw;
-}
-
 .container-2 {
-  /* background-image: url(./images/small-login.png); */
+  
   font-family: "Roboto", sans-serif;
   background-position: center center;
   background-size: cover;
@@ -318,22 +310,7 @@ a {
   padding-bottom: 0;
   overflow: hidden;
 }
-.container-2-header-su {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: max-content;
-  align-items: flex-start;
-  /* text-align: center; */
-  padding: 10px 10px;
-  padding-bottom: 0;
-  overflow: hidden;
-}
 .container-2-header h2 {
-  font-size: 24px;
-  font-weight: 600;
-}
-.container-2-header-su h2 {
   font-size: 24px;
   font-weight: 600;
 }
@@ -341,90 +318,36 @@ a {
   font-size: 14px;
   font-weight: 300;
 }
-.container-2-header-su p {
-  font-size: 14px;
-  font-weight: 300;
-}
-.container-2-header p a, .container-2-header-su p a,
+.container-2-header p a,
 .login-form p a {
   color: #018df8 !important;
   font-weight: 900;
   text-decoration: underline;
   cursor: pointer;
 }
-.form-names{
-  text-align: left;
-  padding-top: 5px;
-  padding-bottom: 2px;
-}
 .login-form {
   width: 100%;
   overflow: hidden;
 }
 #login {
-  /* display: flex;
-  flex-direction: column; */
-  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 }
 #login span {
   margin: 20px 0px 0 0px;
   position: relative;
 }
-.login-form {
-  border-top-left-radius: 80px;
-  border-bottom-left-radius: 80px;
-  background-color: #001235;
-  color: whitesmoke;
-  padding-top: 100px;
-  padding-bottom: 40px;
-  max-width: 90vw;
-  position: absolute;
-  right: 0;
-  min-height: 100vh;
-}
 .login-form h4 {
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 5px;
-  /* margin-left: 15px; */
-}
-.radio{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: whitesmoke;
-  color: #000;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  border: 2px solid rgb(241, 15, 53);
-  width: 70%;
-  padding: 10px;
-}
-.radio-b{
-  height: 20px;
-  color: rgb(241, 15, 53);
-  padding: 0px 0px;
-}
-.radio span{
-  font-weight: 500;
-  align-self: flex-start;
-}
-.check{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: whitesmoke;
-  color: #000;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  border: 2px solid rgb(241, 15, 53);
-  padding: 10px;
+  margin-left: 15px;
 }
 .login-form input {
   background-color: transparent;
   color: #fff;
   padding: 18px 20px;
-  width: 70%;
+  width: 100%;
   outline: none;
   border: 2px solid #005ca3;
   border-radius: 5px;
@@ -439,26 +362,6 @@ a {
 }
 .login-form input::placeholder {
   font-size: 14px;
-}
-.input:hover {
-  border: 2px solid #ffffffe5;
-  transform: scale(0.95);
-  transition: 0.4s ease-in-out;
-}
-.input::placeholder {
-  font-size: 14px;
-}
-.input {
-  background-color: transparent;
-  color: #fff;
-  padding: 18px 20px;
-  width: 70%;
-  outline: none;
-  border: 2px solid #005ca3;
-  border-radius: 5px;
-  font-size: 16px;
-  letter-spacing: 1.4;
-  transition: 0.4s ease-in;
 }
 .login-form .iconify {
   font-size: 34px;
@@ -668,7 +571,23 @@ a {
   color: #005ca3;
   border-radius: 25px;
 }
-
+/* .search-panel {
+  border-radius: 4%;
+  background: whitesmoke;
+  padding: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  align-items: center;
+  position: relative;
+  position: fixed;
+  right: 0;
+  left: auto;
+} */
 .search-container {
   background: whitesmoke;
   /* padding-right: 100px; */
@@ -747,8 +666,6 @@ a {
 
   padding-top: 100px;
   padding-bottom: 100px;
-  background: linear-gradient(rgba(0, 0, 00, 0.8), rgba(0, 0, 00, 0.8)),
-    url("../Images/soccer.png");
   background-size: cover;
 }
 .login-con {
@@ -757,8 +674,7 @@ a {
 
   padding-top: 100px;
   padding-bottom: 100px;
-  background: linear-gradient(rgba(0, 0, 00, 0.8), rgba(0, 0, 00, 0.8)),
-    url("../Images/soccer.png");
+  
   background-size: cover;
 }
 .w-con {
@@ -767,14 +683,12 @@ a {
 
   padding-top: 100px;
   padding-bottom: 100px;
-  background: linear-gradient(rgba(0, 0, 00, 0.8), rgba(0, 0, 00, 0.8)),
-    url("../Images/soccer.png");
+  
   background-size: cover;
 }
 .conne-welcome {
   color: white;
-  background: linear-gradient(rgba(0, 0, 00, 0.8), rgba(0, 0, 00, 0.8)),
-    url("../Images/soccer.png");
+  
   background-size: cover;
 }
 .container {
@@ -1588,17 +1502,15 @@ a {
     height: 100%;
   }
 }
-
-/*  */
 .home-container {
   background: #0f1429;
   color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 20px;
+  /* padding-top: 20px; */
   padding-bottom: 20px;
-  margin-top: 3.7rem;
+  /* margin-top: 3.7rem; */
   min-height: 100%;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -1681,7 +1593,7 @@ a {
   object-fit: cover;
   object-position: center/center;
   margin-bottom: 1.5rem;
-  margin-top: 14px;
+  /* margin-top: 14px; */
   overflow: hidden;
   /* background-color: #0506135e; */
 }
@@ -1900,7 +1812,7 @@ a {
 @media (min-width: 250px) {
 
   .home-container {
-   padding-top: 10px;
+   /* padding-top: 10px; */
    padding-bottom: 10px;
   }
 }
@@ -2313,3 +2225,25 @@ a {
   right: 7px;
   top: 2px;
 }
+@media screen and (max-width: 650px) {
+  .tutorial-details{
+    padding-left: 10px;
+  }
+  .tutorial-card {
+    max-height: fit-content;
+  }
+
+
+  .tutorial-details p {
+    font-size: 10px;
+    word-wrap:normal;
+    word-break: keep-all;
+  }
+}
+.minus-margin {
+  /* margin-top: -50px;
+  align-items: center;
+  background-color: #0f1429; */
+  margin-bottom: 15px;
+}
+/*================ END OF TUTORIAL SECTION=========================*/
