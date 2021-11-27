@@ -10,7 +10,7 @@ const { OutgoingMessage } = require('http');
 const Login = require('../Models/UserProfile');
 const S3_BUCKET = process.env.S3_BUCKET;
 aws.config.region = 'us-east-2'
-const sharp = require('sharp')
+// const sharp = require('sharp')
 require('dotenv').config();
 
 //search
@@ -107,33 +107,33 @@ const addPost = (req, res, next) => {
     if (req.file) {
         input.src = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
         input.srctype = req.file.mimetype
-        if (['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/gif', 'image/x-cmx', 'image/x-icon'].includes(req.file.mimetype)) {
-            sharp(req.file.path)
-                .jpeg({ mozjpeg: true, quality: 85, })
-                .toBuffer()
-                .then(data => {
-                    const s3 = new aws.S3();
-                    const s3Params = {
-                        Bucket: S3_BUCKET,
-                        Key: input.src.slice(42),
-                        Body: data,
-                        // Expires: 180,
-                        ContentDisposition: "attachment;",
-                        ContentType: req.file.mimetype,
-                        ACL: 'public-read'
-                    };
-                    s3.putObject(s3Params, function (s3Err, data) {
-                        if (s3Err) throw s3Err
+        // if (['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/gif', 'image/x-cmx', 'image/x-icon'].includes(req.file.mimetype)) {
+        //     sharp(req.file.path)
+        //         .jpeg({ mozjpeg: true, quality: 85, })
+        //         .toBuffer()
+        //         .then(data => {
+        //             const s3 = new aws.S3();
+        //             const s3Params = {
+        //                 Bucket: S3_BUCKET,
+        //                 Key: input.src.slice(42),
+        //                 Body: data,
+        //                 // Expires: 180,
+        //                 ContentDisposition: "attachment;",
+        //                 ContentType: req.file.mimetype,
+        //                 ACL: 'public-read'
+        //             };
+        //             s3.putObject(s3Params, function (s3Err, data) {
+        //                 if (s3Err) throw s3Err
 
-                        console.log('File uploaded successfully at --> ' + data.Location)
-                        fs.unlink(req.file.path, (err) => {
-                            if (err) console.log('Unable to delete used file ' + err)
-                            else console.log('file deleted')
-                        })
+        //                 console.log('File uploaded successfully at --> ' + data.Location)
+        //                 fs.unlink(req.file.path, (err) => {
+        //                     if (err) console.log('Unable to delete used file ' + err)
+        //                     else console.log('file deleted')
+        //                 })
 
-                    })
-                })
-        } else {
+        //             })
+        //         })
+        // } else {
             fs.readFile(req.file.path, (err, data) => {
                 if (err) throw err;
                 const s3 = new aws.S3();
@@ -158,7 +158,7 @@ const addPost = (req, res, next) => {
                 })
 
             })
-        }
+        // }
 
     }
 
@@ -397,364 +397,364 @@ const addNews = (req, res, next) => {
 
 
 // add Ads
-const addAds = (req, res, next) => {
-    let input = {
-        username: req.body.username,
-        post: req.body.post,
-        url: req.body.url,
-        owner: req.body.owner,
-        likes: [],
-        duration: req.body.duration,
-        sponsored: true,
-        image: req.body.image,
-        university: req.body.university
-    }
-    if (req.file) {
-        input.src = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
-        input.srctype = req.file.mimetype
+// const addAds = (req, res, next) => {
+//     let input = {
+//         username: req.body.username,
+//         post: req.body.post,
+//         url: req.body.url,
+//         owner: req.body.owner,
+//         likes: [],
+//         duration: req.body.duration,
+//         sponsored: true,
+//         image: req.body.image,
+//         university: req.body.university
+//     }
+//     if (req.file) {
+//         input.src = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
+//         input.srctype = req.file.mimetype
 
-        if (['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/gif', 'image/x-cmx', 'image/x-icon'].includes(req.file.mimetype)) {
-            sharp(req.file.path)
-                .jpeg({ mozjpeg: true, quality: 85, })
-                .toBuffer()
-                .then(data => {
-                    const s3 = new aws.S3();
-                    const s3Params = {
-                        Bucket: S3_BUCKET,
-                        Key: input.src.slice(42),
-                        Body: data,
-                        // Expires: 180,
-                        ContentDisposition: "attachment;",
-                        ContentType: req.file.mimetype,
-                        ACL: 'public-read'
-                    };
-                    s3.putObject(s3Params, function (s3Err, data) {
-                        if (s3Err) throw s3Err
+//         if (['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/gif', 'image/x-cmx', 'image/x-icon'].includes(req.file.mimetype)) {
+//             sharp(req.file.path)
+//                 .jpeg({ mozjpeg: true, quality: 85, })
+//                 .toBuffer()
+//                 .then(data => {
+//                     const s3 = new aws.S3();
+//                     const s3Params = {
+//                         Bucket: S3_BUCKET,
+//                         Key: input.src.slice(42),
+//                         Body: data,
+//                         // Expires: 180,
+//                         ContentDisposition: "attachment;",
+//                         ContentType: req.file.mimetype,
+//                         ACL: 'public-read'
+//                     };
+//                     s3.putObject(s3Params, function (s3Err, data) {
+//                         if (s3Err) throw s3Err
 
-                        console.log('File uploaded successfully at --> ' + data.Location)
-                        fs.unlink(req.file.path, (err) => {
-                            if (err) console.log('Unable to delete used file ' + err)
-                            else console.log('file deleted')
-                        })
+//                         console.log('File uploaded successfully at --> ' + data.Location)
+//                         fs.unlink(req.file.path, (err) => {
+//                             if (err) console.log('Unable to delete used file ' + err)
+//                             else console.log('file deleted')
+//                         })
 
-                    })
-                })
-        } else {
-            fs.readFile(req.file.path, (err, data) => {
-                if (err) throw err;
-                const s3 = new aws.S3();
-                const s3Params = {
-                    Bucket: S3_BUCKET,
-                    Key: input.src.slice(42),
-                    Body: data,
-                    // Expires: 180,
-                    ContentDisposition: "attachment;",
-                    ContentType: req.file.mimetype,
-                    ACL: 'public-read'
-                };
-                s3.putObject(s3Params, function (s3Err, data) {
-                    if (s3Err) throw s3Err
+//                     })
+//                 })
+//         } else {
+//             fs.readFile(req.file.path, (err, data) => {
+//                 if (err) throw err;
+//                 const s3 = new aws.S3();
+//                 const s3Params = {
+//                     Bucket: S3_BUCKET,
+//                     Key: input.src.slice(42),
+//                     Body: data,
+//                     // Expires: 180,
+//                     ContentDisposition: "attachment;",
+//                     ContentType: req.file.mimetype,
+//                     ACL: 'public-read'
+//                 };
+//                 s3.putObject(s3Params, function (s3Err, data) {
+//                     if (s3Err) throw s3Err
 
-                    console.log('File uploaded successfully at --> ' + data.Location)
-                    fs.unlink(req.file.path, (err) => {
-                        if (err) console.log('Unable to delete used file ' + err)
-                        else console.log('file deleted')
-                    })
+//                     console.log('File uploaded successfully at --> ' + data.Location)
+//                     fs.unlink(req.file.path, (err) => {
+//                         if (err) console.log('Unable to delete used file ' + err)
+//                         else console.log('file deleted')
+//                     })
 
-                })
+//                 })
 
-            })
-        }
-    }
+//             })
+//         }
+//     }
 
-    let post = new Post(input)
+//     let post = new Post(input)
 
-    post.save()
-        .then((response) => {
-            res.json({
-                message: "Ad Added Successfully"
-            })
-        })
-        .catch((err) => {
-            console.log("Ads Error")
-            res.json({
-                message: "An error occured"
-            })
-        })
-}
+//     post.save()
+//         .then((response) => {
+//             res.json({
+//                 message: "Ad Added Successfully"
+//             })
+//         })
+//         .catch((err) => {
+//             console.log("Ads Error")
+//             res.json({
+//                 message: "An error occured"
+//             })
+//         })
+// }
 
-//add Ass
-const addAss = (req, res, next) => {
-    let input = {
-        username: req.body.username,
-        post: req.body.post,
-        likes: [],
-        owner: req.body.owner,
-        course: req.body.course,
-        email: req.body.email,
-        ass: true,
-        image: req.body.image,
-        verified: req.body.verified
-    }
-    if (req.file) {
-        input.src = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
-        input.srctype = req.file.mimetype
+// //add Ass
+// const addAss = (req, res, next) => {
+//     let input = {
+//         username: req.body.username,
+//         post: req.body.post,
+//         likes: [],
+//         owner: req.body.owner,
+//         course: req.body.course,
+//         email: req.body.email,
+//         ass: true,
+//         image: req.body.image,
+//         verified: req.body.verified
+//     }
+//     if (req.file) {
+//         input.src = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
+//         input.srctype = req.file.mimetype
 
-        if (['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/gif', 'image/x-cmx', 'image/x-icon'].includes(req.file.mimetype)) {
-            sharp(req.file.path)
-                .jpeg({ mozjpeg: true, quality: 85, })
-                .toBuffer()
-                .then(data => {
-                    const s3 = new aws.S3();
-                    const s3Params = {
-                        Bucket: S3_BUCKET,
-                        Key: input.src.slice(42),
-                        Body: data,
-                        // Expires: 180,
-                        ContentDisposition: "attachment;",
-                        ContentType: req.file.mimetype,
-                        ACL: 'public-read'
-                    };
-                    s3.putObject(s3Params, function (s3Err, data) {
-                        if (s3Err) throw s3Err
+//         if (['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/gif', 'image/x-cmx', 'image/x-icon'].includes(req.file.mimetype)) {
+//             sharp(req.file.path)
+//                 .jpeg({ mozjpeg: true, quality: 85, })
+//                 .toBuffer()
+//                 .then(data => {
+//                     const s3 = new aws.S3();
+//                     const s3Params = {
+//                         Bucket: S3_BUCKET,
+//                         Key: input.src.slice(42),
+//                         Body: data,
+//                         // Expires: 180,
+//                         ContentDisposition: "attachment;",
+//                         ContentType: req.file.mimetype,
+//                         ACL: 'public-read'
+//                     };
+//                     s3.putObject(s3Params, function (s3Err, data) {
+//                         if (s3Err) throw s3Err
 
-                        console.log('File uploaded successfully at --> ' + data.Location)
-                        fs.unlink(req.file.path, (err) => {
-                            if (err) console.log('Unable to delete used file ' + err)
-                            else console.log('file deleted')
-                        })
+//                         console.log('File uploaded successfully at --> ' + data.Location)
+//                         fs.unlink(req.file.path, (err) => {
+//                             if (err) console.log('Unable to delete used file ' + err)
+//                             else console.log('file deleted')
+//                         })
 
-                    })
-                })
-        } else {
-            fs.readFile(req.file.path, (err, data) => {
-                if (err) throw err;
-                const s3 = new aws.S3();
-                const s3Params = {
-                    Bucket: S3_BUCKET,
-                    Key: input.src.slice(42),
-                    Body: data,
-                    // Expires: 180,
-                    ContentDisposition: "attachment;",
-                    ContentType: req.file.mimetype,
-                    ACL: 'public-read'
-                };
-                s3.putObject(s3Params, function (s3Err, data) {
-                    if (s3Err) throw s3Err
+//                     })
+//                 })
+//         } else {
+//             fs.readFile(req.file.path, (err, data) => {
+//                 if (err) throw err;
+//                 const s3 = new aws.S3();
+//                 const s3Params = {
+//                     Bucket: S3_BUCKET,
+//                     Key: input.src.slice(42),
+//                     Body: data,
+//                     // Expires: 180,
+//                     ContentDisposition: "attachment;",
+//                     ContentType: req.file.mimetype,
+//                     ACL: 'public-read'
+//                 };
+//                 s3.putObject(s3Params, function (s3Err, data) {
+//                     if (s3Err) throw s3Err
 
-                    console.log('File uploaded successfully at --> ' + data.Location)
-                    fs.unlink(req.file.path, (err) => {
-                        if (err) console.log('Unable to delete used file ' + err)
-                        else console.log('file deleted')
-                    })
+//                     console.log('File uploaded successfully at --> ' + data.Location)
+//                     fs.unlink(req.file.path, (err) => {
+//                         if (err) console.log('Unable to delete used file ' + err)
+//                         else console.log('file deleted')
+//                     })
 
-                })
+//                 })
 
-            })
-        }
-    }
+//             })
+//         }
+//     }
 
-    let post = new Post(input)
+//     let post = new Post(input)
 
-    post.save()
-        .then((response) => {
+//     post.save()
+//         .then((response) => {
 
-            Login.find()
-                .then((respons) => {
-                    respons.forEach(dd => {
-                        let note = {
-                            notification: {
-                                title: "Help with Assignment",
-                                body: "Someone needs help with an assignment!"
-                            },
+//             Login.find()
+//                 .then((respons) => {
+//                     respons.forEach(dd => {
+//                         let note = {
+//                             notification: {
+//                                 title: "Help with Assignment",
+//                                 body: "Someone needs help with an assignment!"
+//                             },
 
-                            apns: {
-                                payload: {
-                                    aps: {
-                                        'mutable-content': 1
-                                    }
-                                }
-                            },
-                            webpush: {
-                                fcmOptions: {
-                                    link: "https://www.uniconne.com/home?oau=true"
-                                }
-                            },
-                            token: dd.regToken
-                        }
+//                             apns: {
+//                                 payload: {
+//                                     aps: {
+//                                         'mutable-content': 1
+//                                     }
+//                                 }
+//                             },
+//                             webpush: {
+//                                 fcmOptions: {
+//                                     link: "https://www.uniconne.com/home?oau=true"
+//                                 }
+//                             },
+//                             token: dd.regToken
+//                         }
 
-                        const notification_options = {
-                            priority: "high"
-                        }
+//                         const notification_options = {
+//                             priority: "high"
+//                         }
 
-                        const regToken = respons.map(resp => resp.regToken)
-                        const message = note
-                        const options = notification_options
+//                         const regToken = respons.map(resp => resp.regToken)
+//                         const message = note
+//                         const options = notification_options
 
-                        admin.messaging().send(note)
-                            .then((re) => console.log({
-                                message: "Notification Sent"
-                            }))
-                            .catch((err) => console.log({
-                                message: "Notification Failed"
-                            }))
-                    })
-
-
-                })
-
-            console.log("news added successfully")
-            res.json({
-                message: "News Added Successfully"
-            })
-        })
-        .catch((err) => {
-            console.log("News Error " + err)
-            res.json({
-                message: "An error occured " + err
-            })
-        })
-}
-
-// Add Tutorial
-const tutorial = (req, res, next) => {
-    let input = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        username: req.body.username,
-        post: req.body.post,
-        likes: [],
-        owner: req.body.owner,
-        course: req.body.course,
-        email: req.body.email,
-        tutorial: true,
-        price: req.body.price,
-        image: req.body.image,
-        verified: req.body.verified,
-        followers: []
-    }
-    if (req.body.verified === "undefined" || req.body.verified === null) {
-        input.verified = false
-    }
-    if (req.file) {
-        input.src = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
-        input.srctype = req.file.mimetype
-
-        if (['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/gif', 'image/x-cmx', 'image/x-icon'].includes(req.file.mimetype)) {
-            sharp(req.file.path)
-                .jpeg({ mozjpeg: true, quality: 85, })
-                .toBuffer()
-                .then(data => {
-                    const s3 = new aws.S3();
-                    const s3Params = {
-                        Bucket: S3_BUCKET,
-                        Key: input.src.slice(42),
-                        Body: data,
-                        // Expires: 180,
-                        ContentDisposition: "attachment;",
-                        ContentType: req.file.mimetype,
-                        ACL: 'public-read'
-                    };
-                    s3.putObject(s3Params, function (s3Err, data) {
-                        if (s3Err) throw s3Err
-
-                        console.log('File uploaded successfully at --> ' + data.Location)
-                        fs.unlink(req.file.path, (err) => {
-                            if (err) console.log('Unable to delete used file ' + err)
-                            else console.log('file deleted')
-                        })
-
-                    })
-                })
-        } else {
-            fs.readFile(req.file.path, (err, data) => {
-                if (err) throw err;
-                const s3 = new aws.S3();
-                const s3Params = {
-                    Bucket: S3_BUCKET,
-                    Key: input.src.slice(42),
-                    Body: data,
-                    // Expires: 180,
-                    ContentDisposition: "attachment;",
-                    ContentType: req.file.mimetype,
-                    ACL: 'public-read'
-                };
-                s3.putObject(s3Params, function (s3Err, data) {
-                    if (s3Err) throw s3Err
-
-                    console.log('File uploaded successfully at --> ' + data.Location)
-                    fs.unlink(req.file.path, (err) => {
-                        if (err) console.log('Unable to delete used file ' + err)
-                        else console.log('file deleted')
-                    })
-
-                })
-
-            })
-        }
-    }
-
-    let post = new Post(input)
-
-    post.save()
-        .then((response) => {
-
-            Login.find()
-                .then((respons) => {
-                    respons.forEach(dd => {
-                        let note = {
-                            notification: {
-                                title: "New Tutorial",
-                                body: "Someone just posted a new tutorial!"
-                            },
-
-                            apns: {
-                                payload: {
-                                    aps: {
-                                        'mutable-content': 1
-                                    }
-                                }
-                            },
-                            webpush: {
-                                fcmOptions: {
-                                    link: "https://www.uniconne.com/home?oau=true"
-                                }
-                            },
-                            token: dd.regToken
-                        }
-
-                        const notification_options = {
-                            priority: "high"
-                        }
-
-                        const regToken = respons.map(resp => resp.regToken)
-                        const message = note
-                        const options = notification_options
-
-                        admin.messaging().send(note)
-                            .then((re) => console.log({
-                                message: "Notification Sent"
-                            }))
-                            .catch((err) => console.log({
-                                message: "Notification Failed"
-                            }))
-                    })
+//                         admin.messaging().send(note)
+//                             .then((re) => console.log({
+//                                 message: "Notification Sent"
+//                             }))
+//                             .catch((err) => console.log({
+//                                 message: "Notification Failed"
+//                             }))
+//                     })
 
 
-                })
+//                 })
 
-            console.log("news added successfully")
-            res.json({
-                message: "News Added Successfully"
-            })
-        })
-        .catch((err) => {
-            console.log("News Error " + err)
-            res.json({
-                message: "An error occured " + err
-            })
-        })
-}
+//             console.log("news added successfully")
+//             res.json({
+//                 message: "News Added Successfully"
+//             })
+//         })
+//         .catch((err) => {
+//             console.log("News Error " + err)
+//             res.json({
+//                 message: "An error occured " + err
+//             })
+//         })
+// }
+
+// // Add Tutorial
+// const tutorial = (req, res, next) => {
+//     let input = {
+//         firstname: req.body.firstname,
+//         lastname: req.body.lastname,
+//         username: req.body.username,
+//         post: req.body.post,
+//         likes: [],
+//         owner: req.body.owner,
+//         course: req.body.course,
+//         email: req.body.email,
+//         tutorial: true,
+//         price: req.body.price,
+//         image: req.body.image,
+//         verified: req.body.verified,
+//         followers: []
+//     }
+//     if (req.body.verified === "undefined" || req.body.verified === null) {
+//         input.verified = false
+//     }
+//     if (req.file) {
+//         input.src = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
+//         input.srctype = req.file.mimetype
+
+//         if (['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/gif', 'image/x-cmx', 'image/x-icon'].includes(req.file.mimetype)) {
+//             sharp(req.file.path)
+//                 .jpeg({ mozjpeg: true, quality: 85, })
+//                 .toBuffer()
+//                 .then(data => {
+//                     const s3 = new aws.S3();
+//                     const s3Params = {
+//                         Bucket: S3_BUCKET,
+//                         Key: input.src.slice(42),
+//                         Body: data,
+//                         // Expires: 180,
+//                         ContentDisposition: "attachment;",
+//                         ContentType: req.file.mimetype,
+//                         ACL: 'public-read'
+//                     };
+//                     s3.putObject(s3Params, function (s3Err, data) {
+//                         if (s3Err) throw s3Err
+
+//                         console.log('File uploaded successfully at --> ' + data.Location)
+//                         fs.unlink(req.file.path, (err) => {
+//                             if (err) console.log('Unable to delete used file ' + err)
+//                             else console.log('file deleted')
+//                         })
+
+//                     })
+//                 })
+//         } else {
+//             fs.readFile(req.file.path, (err, data) => {
+//                 if (err) throw err;
+//                 const s3 = new aws.S3();
+//                 const s3Params = {
+//                     Bucket: S3_BUCKET,
+//                     Key: input.src.slice(42),
+//                     Body: data,
+//                     // Expires: 180,
+//                     ContentDisposition: "attachment;",
+//                     ContentType: req.file.mimetype,
+//                     ACL: 'public-read'
+//                 };
+//                 s3.putObject(s3Params, function (s3Err, data) {
+//                     if (s3Err) throw s3Err
+
+//                     console.log('File uploaded successfully at --> ' + data.Location)
+//                     fs.unlink(req.file.path, (err) => {
+//                         if (err) console.log('Unable to delete used file ' + err)
+//                         else console.log('file deleted')
+//                     })
+
+//                 })
+
+//             })
+//         }
+//     }
+
+//     let post = new Post(input)
+
+//     post.save()
+//         .then((response) => {
+
+//             Login.find()
+//                 .then((respons) => {
+//                     respons.forEach(dd => {
+//                         let note = {
+//                             notification: {
+//                                 title: "New Tutorial",
+//                                 body: "Someone just posted a new tutorial!"
+//                             },
+
+//                             apns: {
+//                                 payload: {
+//                                     aps: {
+//                                         'mutable-content': 1
+//                                     }
+//                                 }
+//                             },
+//                             webpush: {
+//                                 fcmOptions: {
+//                                     link: "https://www.uniconne.com/home?oau=true"
+//                                 }
+//                             },
+//                             token: dd.regToken
+//                         }
+
+//                         const notification_options = {
+//                             priority: "high"
+//                         }
+
+//                         const regToken = respons.map(resp => resp.regToken)
+//                         const message = note
+//                         const options = notification_options
+
+//                         admin.messaging().send(note)
+//                             .then((re) => console.log({
+//                                 message: "Notification Sent"
+//                             }))
+//                             .catch((err) => console.log({
+//                                 message: "Notification Failed"
+//                             }))
+//                     })
+
+
+//                 })
+
+//             console.log("news added successfully")
+//             res.json({
+//                 message: "News Added Successfully"
+//             })
+//         })
+//         .catch((err) => {
+//             console.log("News Error " + err)
+//             res.json({
+//                 message: "An error occured " + err
+//             })
+//         })
+// }
 
 //Buying
 const buy = (req, res, next) => {
@@ -1013,155 +1013,155 @@ const analysis = (req, res, next) => {
 }
 
 
-const assCommenting = (req, res, next) => {
-    let postID = req.body.postID
-    let comment = {
-        comment: req.body.comment,
-        username: req.body.username,
-        src: req.body.src
-    }
-    if (req.file) {
-        comment.img = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
-        comment.srctype = req.file.mimetype
-        sharp(req.file.path)
-            .jpeg({ mozjpeg: true, quality: 85, })
-            .toBuffer()
-            .then(data => {
-                const s3 = new aws.S3();
-                const s3Params = {
-                    Bucket: S3_BUCKET,
-                    Key: comment.img.slice(42),
-                    Body: data,
-                    // Expires: 180,
-                    ContentDisposition: "attachment;",
-                    ContentType: req.file.mimetype,
-                    ACL: 'public-read'
-                };
-                s3.putObject(s3Params, function (s3Err, data) {
-                    if (s3Err) throw s3Err
+// const assCommenting = (req, res, next) => {
+//     let postID = req.body.postID
+//     let comment = {
+//         comment: req.body.comment,
+//         username: req.body.username,
+//         src: req.body.src
+//     }
+//     if (req.file) {
+//         comment.img = `https://gigvee.s3.us-east-2.amazonaws.com/${uuidv4() + req.body.filename.trim()}`
+//         comment.srctype = req.file.mimetype
+//         sharp(req.file.path)
+//             .jpeg({ mozjpeg: true, quality: 85, })
+//             .toBuffer()
+//             .then(data => {
+//                 const s3 = new aws.S3();
+//                 const s3Params = {
+//                     Bucket: S3_BUCKET,
+//                     Key: comment.img.slice(42),
+//                     Body: data,
+//                     // Expires: 180,
+//                     ContentDisposition: "attachment;",
+//                     ContentType: req.file.mimetype,
+//                     ACL: 'public-read'
+//                 };
+//                 s3.putObject(s3Params, function (s3Err, data) {
+//                     if (s3Err) throw s3Err
 
-                    console.log('File uploaded successfully at --> ' + data.Location)
-                    fs.unlink(req.file.path, (err) => {
-                        if (err) console.log('Unable to delete used file ' + err)
-                        else console.log('file deleted')
-                    })
+//                     console.log('File uploaded successfully at --> ' + data.Location)
+//                     fs.unlink(req.file.path, (err) => {
+//                         if (err) console.log('Unable to delete used file ' + err)
+//                         else console.log('file deleted')
+//                     })
 
-                })
-            })
-        // fs.readFile(req.file.path, (err, data) => {
-        //     if (err) throw err;
-        //     const s3 = new aws.S3();
-        //     const s3Params = {
-        //         Bucket: S3_BUCKET,
-        //         Key: comment.img.slice(42),
-        //         Body: data,
-        //         // Expires: 180,
-        //         ContentDisposition: "attachment;",
-        //         ContentType: req.file.mimetype,
-        //         ACL: 'public-read'
-        //     };
-        //     s3.putObject(s3Params, function (s3Err, data) {
-        //         if (s3Err) throw s3Err
+//                 })
+//             })
+//         // fs.readFile(req.file.path, (err, data) => {
+//         //     if (err) throw err;
+//         //     const s3 = new aws.S3();
+//         //     const s3Params = {
+//         //         Bucket: S3_BUCKET,
+//         //         Key: comment.img.slice(42),
+//         //         Body: data,
+//         //         // Expires: 180,
+//         //         ContentDisposition: "attachment;",
+//         //         ContentType: req.file.mimetype,
+//         //         ACL: 'public-read'
+//         //     };
+//         //     s3.putObject(s3Params, function (s3Err, data) {
+//         //         if (s3Err) throw s3Err
 
-        //         console.log('File uploaded successfully at --> ' + data.Location)
+//         //         console.log('File uploaded successfully at --> ' + data.Location)
 
-        //     })
+//         //     })
 
-        // })
-    }
+//         // })
+//     }
 
-    let comments
-    Post.findById(postID)
-        .then((data) => {
-            let comm = data.comments
-            //console.log(comment)
-            //console.log(comm)
-            //console.log(comment)
-            if (comm) {
-                comments = [comment, ...comm]
-            }
-            else {
-                comments = [comment]
-            }
+//     let comments
+//     Post.findById(postID)
+//         .then((data) => {
+//             let comm = data.comments
+//             //console.log(comment)
+//             //console.log(comm)
+//             //console.log(comment)
+//             if (comm) {
+//                 comments = [comment, ...comm]
+//             }
+//             else {
+//                 comments = [comment]
+//             }
 
-            let updatedPost = {
-                comments: comments
-            }
-            console.log(updatedPost.comments)
-            Post.findByIdAndUpdate(postID, { $set: updatedPost })
-                .then((pos) => {
+//             let updatedPost = {
+//                 comments: comments
+//             }
+//             console.log(updatedPost.comments)
+//             Post.findByIdAndUpdate(postID, { $set: updatedPost })
+//                 .then((pos) => {
 
-                    Login.findById(data.owner)
-                        .then((person) => {
-                            let note = {
-                                notification: {
-                                    title: "Solution to assignment",
-                                    body: `${comment.username} just sent a solution to an assignment you posted`
-                                }
-                            }
+//                     Login.findById(data.owner)
+//                         .then((person) => {
+//                             let note = {
+//                                 notification: {
+//                                     title: "Solution to assignment",
+//                                     body: `${comment.username} just sent a solution to an assignment you posted`
+//                                 }
+//                             }
 
-                            const notification_options = {
-                                priority: "high"
-                            }
-                            const regToken = person.regToken
-                            const message = note
-                            const options = notification_options
+//                             const notification_options = {
+//                                 priority: "high"
+//                             }
+//                             const regToken = person.regToken
+//                             const message = note
+//                             const options = notification_options
 
-                            admin.messaging().sendToDevice(regToken, message, options)
-                                .then((re) => console.log({
-                                    message: "Notification Sent"
-                                }))
-                                .catch((err) => console.log({
-                                    message: "Notification Failed"
-                                }))
-                        })
+//                             admin.messaging().sendToDevice(regToken, message, options)
+//                                 .then((re) => console.log({
+//                                     message: "Notification Sent"
+//                                 }))
+//                                 .catch((err) => console.log({
+//                                     message: "Notification Failed"
+//                                 }))
+//                         })
 
-                    if (pos.ass) {
-                        var transporter = nodemailer.createTransport({
-                            service: 'gmail',
-                            auth: {
-                                user: 'uniconneteam@gmail.com',
-                                pass: 'JohnAlalade@4444'
-                            }
-                        });
+//                     if (pos.ass) {
+//                         var transporter = nodemailer.createTransport({
+//                             service: 'gmail',
+//                             auth: {
+//                                 user: 'uniconneteam@gmail.com',
+//                                 pass: 'JohnAlalade@4444'
+//                             }
+//                         });
 
-                        var mailOptions = {
-                            from: 'uniconneteam@gmail.com',
-                            to: pos.email,
-                            subject: 'Uniconne Assignment Notification',
-                            html: `<p>Hello ${pos.username},</p> <p>Someone sent an answer to an assignment you posted earlier</p> 
-                            <p>${pos.post}</p> <br /> <a href="https://www.uniconne.com/profile?oau=true">Check it out</a> <p>Kind regards..</p> <quote>~John Alalade</quote>`
-                        };
+//                         var mailOptions = {
+//                             from: 'uniconneteam@gmail.com',
+//                             to: pos.email,
+//                             subject: 'Uniconne Assignment Notification',
+//                             html: `<p>Hello ${pos.username},</p> <p>Someone sent an answer to an assignment you posted earlier</p> 
+//                             <p>${pos.post}</p> <br /> <a href="https://www.uniconne.com/profile?oau=true">Check it out</a> <p>Kind regards..</p> <quote>~John Alalade</quote>`
+//                         };
 
-                        transporter.sendMail(mailOptions, function (error, info) {
-                            if (error) {
-                                console.log("Emailimg error: " + error);
-                            } else {
-                                console.log('Email sent: ' + info.response);
-                            }
-                        });
-                    }
-                    console.log({
-                        message: "Comment Add Successfully"
-                    })
-                    res.json({
-                        message: "Comment Add Successfully"
-                    })
-                })
-                .catch(error => {
-                    res.json({
-                        message: "An Error Occured" + error
-                    })
-                })
+//                         transporter.sendMail(mailOptions, function (error, info) {
+//                             if (error) {
+//                                 console.log("Emailimg error: " + error);
+//                             } else {
+//                                 console.log('Email sent: ' + info.response);
+//                             }
+//                         });
+//                     }
+//                     console.log({
+//                         message: "Comment Add Successfully"
+//                     })
+//                     res.json({
+//                         message: "Comment Add Successfully"
+//                     })
+//                 })
+//                 .catch(error => {
+//                     res.json({
+//                         message: "An Error Occured" + error
+//                     })
+//                 })
 
-        })
-        .then(() => {
-            res.json({
-                message: "Comment Add Successfully"
-            })
-        })
-        .catch(err => console.error("Error Ooo! " + err))
-}
+//         })
+//         .then(() => {
+//             res.json({
+//                 message: "Comment Add Successfully"
+//             })
+//         })
+//         .catch(err => console.error("Error Ooo! " + err))
+// }
 
 // like
 const like = (req, res, next) => {
