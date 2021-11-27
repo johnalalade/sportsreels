@@ -19,7 +19,7 @@ import {
 
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Progress } from 'reactstrap';
 
-import Moment from "react-moment";
+// import Moment from "react-moment";
 import {
   Modal,
   ModalHeader,
@@ -382,9 +382,9 @@ const Cards = (prop) => {
               </div> */}
               {(prop.news && <p className="text-mute">News/Trends</p>) ||
                 (prop.sponsored && <p className="text-mute">Sponsored</p>) || (
-                  <Moment className="datetime" fromNow>
-                    {prop.createdAt}
-                  </Moment>
+                  <div className="datetime" fromNow>
+                    {/* {prop.createdAt} */}
+                  </div>
                 )
               }
             </div>

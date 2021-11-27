@@ -16,7 +16,7 @@ import {
   faReply
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faTimes } from "@fortawesome/free-solid-svg-icons";
-import Moment from "react-moment";
+// import Moment from "react-moment";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import {
   Dropdown,
@@ -437,9 +437,9 @@ const Cards = (prop) => {
               </div> */}
               {(prop.news && <p className="text-mute">News/Trends</p>) ||
                 (prop.sponsored && <p className="text-mute">Sponsored</p>) || (
-                  <Moment className="datetime" fromNow>
-                    {prop.createdAt}
-                  </Moment>
+                  <div className="datetime" fromNow>
+                    {/* {prop.createdAt} */}
+                  </div>
                 )}
             </div>
             {prop.course && <h6>Course: {prop.course}</h6>}
