@@ -1250,7 +1250,7 @@ class Home extends Component {
                     ))}
                   </select> */}
                   <div className="scroll-cont">
-                    <ScrollMenu
+                    {/* <ScrollMenu
                       LeftArrow={LeftArrow}
                     >
                       {this.state.topics.map((topic) => (
@@ -1266,7 +1266,7 @@ class Home extends Component {
                       )
                       )}
 
-                    </ScrollMenu>
+                    </ScrollMenu> */}
                   </div>
                 </label>
 

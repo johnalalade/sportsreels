@@ -22,4 +22,4 @@ let upload = multer({
 })
 
 
-module.exports = upload.single('categoryImage')
+module.exports = upload.single('file')
