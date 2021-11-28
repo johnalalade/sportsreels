@@ -21,5 +21,4 @@ let upload = multer({
     fileFilter: filerFilter
 })
 
-
 module.exports = upload.single('file')
