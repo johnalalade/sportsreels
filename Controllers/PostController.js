@@ -1223,5 +1223,5 @@ const like = (req, res, next) => {
 
 }
 module.exports = {
-    indexPost, addPost, sharePost, addNews, addAds, deletePost, showOne, commenting, assCommenting, like, searchPost, addAss, showPost, tutorial, buy, analysis
+    indexPost, addPost, sharePost, addNews,  deletePost, showOne, commenting,  like, searchPost,  showPost, buy, analysis
 }
