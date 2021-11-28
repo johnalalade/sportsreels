@@ -169,7 +169,7 @@ const updateProfile = (req, res, next) => {
             if (err) throw err;
             const s3 = new aws.S3();
             const s3Params = {
-                Bucket: S3_BUCKET,
+                Bucket: "gigvee",
                 Key: updatedProfile.avatar.slice(42),
                 Body: data,
                 // Expires: 180,
