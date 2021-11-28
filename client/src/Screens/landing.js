@@ -48,7 +48,7 @@ function Landing() {
             <a class="nav-link" onClick={()=> window.location =`/login`}>Login</a>
           </li> || 
           <li class="nav-item">
-            <b><i><a class="nav-link" href="#intro" >{localStorage.getItem('firstname')}</a></i></b>
+            <b><i><a class="nav-link" href="#intro" onClick={()=> window.location =`/profile`} >{localStorage.getItem('fullname')}</a></i></b>
           </li>}
           
           
