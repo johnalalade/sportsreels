@@ -945,7 +945,7 @@ class Home extends Component {
       data.append("file", this.state.img2);
       data.append("filename", this.state.img2.name);
     }
-    data.append("firstname", this.state.profile.firstname);
+    data.append("fullname", this.state.profile.fullname);
     data.append("lastname", this.state.profile.lastname);
     data.append("username", this.state.profile.username);
     data.append("post", this.input.current.value);
